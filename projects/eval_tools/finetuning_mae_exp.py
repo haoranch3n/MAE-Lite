@@ -21,7 +21,8 @@ class Exp(BaseExp):
         self.global_pool = True
 
         # dataset & model
-        self.dataset = "ImageNet"
+        # self.dataset = "ImageNet"
+        self.dataset = "Fundus"
         self.img_size = 224
 
         # optimizer
