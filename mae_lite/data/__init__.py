@@ -9,6 +9,7 @@ from .datasets.inaturalist import INatDataset
 from .datasets.oxford_flowers import Flowers
 from .datasets.oxford_pets import Pets
 from .datasets.stanford_cars import Cars
+from .datasets.retina_fundus import Fundus
 
 from .transforms import ssl_transform, typical_imagenet_transform, timm_transform
 from .registry import DATASETS
