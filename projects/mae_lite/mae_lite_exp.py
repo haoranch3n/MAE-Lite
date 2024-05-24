@@ -53,6 +53,8 @@ class MAE(nn.Module):
                 loss, _, _ = self.model(images, self.mask_ratio)
             elif len(model_output) == 2:
                 loss, _ = self.model(images, self.mask_ratio)
+            elif len(model_output) == 1:
+                loss = self.model(images, self.mask_ratio)
 
             if self.ema_model is not None:
                 self.ema_model.update(self.model)
