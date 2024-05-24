@@ -21,7 +21,7 @@ def list_files(dataset_path):
 class Fundus(Dataset):
     """Custom dataset class for fundus images in PyTorch."""
     def __init__(self, root=None, transform=None):
-        self.img_dir = '/cnvrg/fundus'
+        self.img_dir = '/data/fundus'
 
         self.images = list_files(self.img_dir)
         self.transform = transform if transform else transforms.Compose([
