@@ -17,7 +17,6 @@ from torchvision.datasets.utils import extract_archive
 from ..registry import DATASETS
 from mae_lite.utils import get_root_dir
 
-@DATASETS.register()
 def list_files(dataset_path):
     print("Listing files in:", dataset_path)
     images = []
@@ -28,7 +27,7 @@ def list_files(dataset_path):
     print(f"Found {len(images)} .tif files.")
     return images
 
-
+@DATASETS.register()
 class Fundus(Dataset):
     """The above class is a custom dataset class for images in PyTorch."""
     def __init__(self):
