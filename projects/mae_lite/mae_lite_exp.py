@@ -65,7 +65,7 @@ class Exp(BaseExp):
         self.mask_ratio = 0.75
 
         # dataset & model
-        self.dataset = "ImageNet"
+        self.dataset = "Fundus"
         self.encoder_arch = "mae_vit_tiny_patch16"
         self.img_size = 224
 
