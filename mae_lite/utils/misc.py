@@ -71,7 +71,8 @@ class DataPrefetcher:
 
     def preload(self):
         try:
-            self.next_input, self.next_target = next(self.loader)
+            # self.next_input, self.next_target = next(self.loader)
+            self.next_input = next(self.loader)
         except StopIteration:
             self.next_input = None
             self.next_target = None
@@ -90,7 +91,7 @@ class DataPrefetcher:
         if target is not None:
             target.record_stream(torch.cuda.current_stream())
         self.preload()
-        return input, None
+        return input, target
 
     def _input_cuda_for_list(self):
         for indx in range(len(self.next_input)):
