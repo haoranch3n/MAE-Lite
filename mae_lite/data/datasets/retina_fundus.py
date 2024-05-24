@@ -1,19 +1,9 @@
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from PIL import Image
-import os
 from __future__ import print_function
-from PIL import Image
 
-import numpy as np
 import os
-import os.path
-import scipy.io
-
-from torchvision.datasets.vision import VisionDataset
-from torchvision.datasets.utils import download_url
-from torchvision.datasets.utils import extract_archive
+from PIL import Image
+from torch.utils.data import Dataset
+from torchvision import transforms
 from ..registry import DATASETS
 from mae_lite.utils import get_root_dir
 
@@ -29,17 +19,20 @@ def list_files(dataset_path):
 
 @DATASETS.register()
 class Fundus(Dataset):
-    """The above class is a custom dataset class for images in PyTorch."""
-    def __init__(self):
-        self.img_dir = '/cnvrg/fundus'
+    """Custom dataset class for fundus images in PyTorch."""
+    def __init__(self, root=None, transform=None):
+        if root is None:
+            self.img_dir = 'cnvrg/fundus'
+        else:
+            self.img_dir = root
         self.images = list_files(self.img_dir)
-        self.transform =  transforms.Compose([
-                            transforms.Resize(224),
-                            transforms.CenterCrop(224),
-                            transforms.ToTensor(),
-                            transforms.Normalize([0.485, 0.456, 0.406],
-                                                [0.229, 0.224, 0.225])
-                        ])
+        self.transform = transform if transform else transforms.Compose([
+            transforms.Resize(224),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406],
+                                 [0.229, 0.224, 0.225])
+        ])
 
     def __len__(self):
         return len(self.images)
@@ -51,8 +44,13 @@ class Fundus(Dataset):
             image = self.transform(image)
         return image
 
-
-
-
-
-
+if __name__ == "__main__":
+    transform = transforms.Compose([
+        transforms.Resize(224),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406],
+                             [0.229, 0.224, 0.225])
+    ])
+    dataset = Fundus(transform=transform)
+    print(f"Number of images: {len(dataset)}")
