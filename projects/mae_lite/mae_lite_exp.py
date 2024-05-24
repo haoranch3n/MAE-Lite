@@ -107,7 +107,8 @@ class Exp(BaseExp):
 
     def get_model(self):
         if "model" not in self.__dict__:
-            model = create_model(self.encoder_arch, norm_pix_loss=self.norm_pix_loss)
+            # model = create_model(self.encoder_arch, norm_pix_loss=self.norm_pix_loss)
+            model = create_model(self.encoder_arch, norm_pix_loss=self.norm_pix_loss, pretrained=self.pretrained)
             if self.sync_bn:
                 model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
             self.model = MAE(self, model)
