@@ -90,8 +90,7 @@ class DataPrefetcher:
         if target is not None:
             target.record_stream(torch.cuda.current_stream())
         self.preload()
-        print(input, target)
-        return input, target
+        return input, None
 
     def _input_cuda_for_list(self):
         for indx in range(len(self.next_input)):
