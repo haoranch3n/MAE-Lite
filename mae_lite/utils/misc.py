@@ -71,8 +71,12 @@ class DataPrefetcher:
 
     def preload(self):
         try:
-            # self.next_input, self.next_target = next(self.loader)
-            self.next_input = next(self.loader)
+            next_data = next(self.loader)
+            if len(next_data) == 2:
+                self.next_input, self.next_target = next_data
+            else:
+                self.next_input = next_data
+                self.next_target = None
         except StopIteration:
             self.next_input = None
             self.next_target = None
