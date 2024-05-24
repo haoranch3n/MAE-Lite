@@ -38,7 +38,6 @@ def all_reduce_mean(x):
     world_size = get_world_size()
     if world_size > 1:
         if not isinstance(x, torch.Tensor):
-            print(x)
             x_reduce = torch.tensor(x).cuda()
             dist.all_reduce(x_reduce)
             x_reduce /= world_size

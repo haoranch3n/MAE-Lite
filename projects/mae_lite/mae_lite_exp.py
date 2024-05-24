@@ -55,7 +55,7 @@ class MAE(nn.Module):
                 loss, _ = self.model(images, self.mask_ratio)
             else:
                 loss = self.model(images, self.mask_ratio)
-            # print(loss)
+            print(len(model_output))
             if self.ema_model is not None:
                 self.ema_model.update(self.model)
             return loss, None
