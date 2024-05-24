@@ -1,0 +1,320 @@
+---
+:tree:
+  projects/: 
+  projects/eval_tools/visualize/: 
+  projects/mocov3/: 
+  projects/eval_tools/: 
+  ".cnvrgignore":
+    :sha1: 99823fc2a8f6ea8992fcace85d0e8ca21194d54b
+    :commit_time: 
+    :last_modified: 1716576833.0
+  Makefile:
+    :sha1: 2d2c03edeff20e2898611ba734b495a277eb164b
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/run_vis_attn.py:
+    :sha1: 7d9d6e4c52e0185f064db9de8c6f408cbdb5a5e6
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mocov3/MOCOV3.md:
+    :sha1: ed8a5f107004fff58a753fdc8d6476900b4285a5
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/run_vis_cmp_rep.py:
+    :sha1: ab8b39834348299dda25dd166db0031eaef40a12
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mocov3/mocov3_exp.py:
+    :sha1: 22c45aedd539bc5d87ee6855fb9e876f13b1a8c6
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/visualize/__init__.py:
+    :sha1: 381d305bb1fdad9e7bbd50397d6a5f7efffc3215
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mocov3/vits.py:
+    :sha1: ef6ea0431bed9952edc8398561d5356a9e1cd8cd
+    :commit_time: 
+    :last_modified: 1716576827.0
+  LICENSE:
+    :sha1: 3b6511c027fafed7cf48e4b54be6f09a5a88ee60
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/finetuning_distill_exp.py:
+    :sha1: 596f075a32e6d323acc8396a2b2e69844ee0e499
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mocov3/mocov3.py:
+    :sha1: 5435d1ee0a6cfc9250c581ded9b03044d9c3192c
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/: 
+  projects/eval_tools/visualize/misc.py:
+    :sha1: 32f9ab0c677034893cc16510405e7e32adf8e439
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/visualize/rep_cmp_analyzer.py:
+    :sha1: 7affa8161f1fade98e395d34275cef9402d602dc
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/util/: 
+  projects/eval_tools/VISUAL.md:
+    :sha1: 47ecd148a0a1d11302a8ac2220aef6dc267644b3
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/visualize/attn_analyzer.py:
+    :sha1: 73829d1435a3db83031631da21a8151bd4208f8e
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/finetuning_rpe_exp.py:
+    :sha1: b16df94610202551c004a6d72ea89e089945c8f4
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/convert_to_d2.py:
+    :sha1: 0d633e277bf8388d92a9c83fb31f811bbd668295
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/models_vit_rpe.py:
+    :sha1: 6e7ac9376655b6f5c5cb18e0dc733fe055c4a9f4
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/mask_rcnn_vitdet_t_100ep.py:
+    :sha1: 8dbeef9f4810bc250e45a41bfa0bee4d736c04fb
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/util/lr_decay.py:
+    :sha1: 2d40b1357d2e4dc6a07f99a240fd631bd042fe02
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/scripts/: 
+  projects/eval_tools/finetuning_mae_exp.py:
+    :sha1: cd1e6bed8b4eddf19b2f124f46317d860aea466a
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/DETECTION.md:
+    :sha1: 13f66c00593a3e6ea66d956e40ca1a855fea5117
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/mask_rcnn_vitdet_t_100ep_mocov3.py:
+    :sha1: ed553a2e203502dd65845a3e8088768b5530f9fb
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/util/forward_hook.py:
+    :sha1: dbb7475142acd37867684f4499a760f1d9a86ad4
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/: 
+  projects/eval_tools/TRANSFER.md:
+    :sha1: 29563b76612df768d0db55b0faa88db4632d9214
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/mask_rcnn_vitdet_t_100ep_mae_distill.py:
+    :sha1: 59431b9388a7cdabe92d9083ad574459416dd07e
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/simmim_vit.py:
+    :sha1: a72e65730007ac9684b9d91f79986e0c1d281dff
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/util/: 
+  projects/eval_tools/finetuning_exp.py:
+    :sha1: 9a10fbb04b01544aa951869a2538468ef41a60f1
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/det/mask_rcnn_vitdet_t_100ep_mae.py:
+    :sha1: e9e992d07569d9c1b42c29fe6ebc3837eecc9118
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/: 
+  projects/mae_lite/mae_lite_exp.py:
+    :sha1: fb5fb8b2a6fddda760fe68e30f7a4c9fd669093f
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/models/: 
+  projects/eval_tools/finetuning_transfer_exp.py:
+    :sha1: 9746153da026754d8d4813908756ef8ec396b389
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/scripts/transfer.sh:
+    :sha1: fa6a8d0d4caeabce845794a44d19477f7d12ae6c
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/eval_tools/scripts/run_vis_attn_all.sh:
+    :sha1: 8cb4dcb3dc643e4f012c87bd49122696220045ef
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/models_mae.py:
+    :sha1: bb9ac9fac4e23b8671127f148047f6babaf61a6b
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/SMALL.md:
+    :sha1: '09f4e97887a3756af661761c121300f00a4953af'
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/: 
+  projects/eval_tools/scripts/run_vis_cmp_rep_all.sh:
+    :sha1: e6aba01bfe6df2cb906ab1171a558933bbd1bd82
+    :commit_time: 
+    :last_modified: 1716576827.0
+  README.md:
+    :sha1: 29e1e2ba60c9d25905a74da4f7d5ef3d31944e24
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/util/pos_embed.py:
+    :sha1: 0c0a50c632832a4cf5776a674739b176ef887059
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/: 
+  projects/mae_lite/mae_lite_distill_exp.py:
+    :sha1: 725d56fe8125107d58600cebbd28aa4fac58347f
+    :commit_time: 
+    :last_modified: 1716576827.0
+  setup.py:
+    :sha1: 65582f184dc635d60d0475f4a40fa1a1d56e8f04
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/models/__init__.py:
+    :sha1: 80097e0731e838194f499ce50c3ed45a20e4a01b
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/models/models_vit.py:
+    :sha1: 2174d8b79ed64b9bee5d30b929515e9ea11237ff
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/sampler.py:
+    :sha1: c56331470042bc77a8a6d929c177fa19d0355829
+    :commit_time: 
+    :last_modified: 1716576827.0
+  projects/mae_lite/DISTILL.md:
+    :sha1: 21973e78f9e639bb2594cf6937bf240f0c3c061e
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/tools/: 
+  mae_lite/data/datasets/cifar.py:
+    :sha1: 613544f5b9451cca07938b46ed3f548e8daa6594
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/transforms.py:
+    :sha1: 4f0f750f80545abde4f19fc0e0098d2f621d34af
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/models/registry.py:
+    :sha1: a8ce1a3b086c4512e461a270e1b3b602c7ea82e0
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/__init__.py:
+    :sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/__init__.py:
+    :sha1: 23dfa2492552ac544f3b7772015f4c8d635f2291
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/layers/: 
+  mae_lite/data/datasets/fgvc_aircraft.py:
+    :sha1: bd182158d2b38d196baad13752b6d803d4df128b
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/: 
+  mae_lite/data/datasets/stanford_cars.py:
+    :sha1: 23d5ba564489574ac687e80d15471b298ded7fb0
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/oxford_flowers.py:
+    :sha1: f6f4baca762aec73bb59d23e0eb3434d88e8b4e7
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/inaturalist.py:
+    :sha1: 4a5948dcc87acf22cd4e5bdc6e642e11dfcbb12f
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/oxford_pets.py:
+    :sha1: 40f7bd8a965143ab8ce792d29cc8051c278d8768
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/tools/train.py:
+    :sha1: 970611c10331fc11976db65f7f04222e7c6d9686
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/tools/__init__.py:
+    :sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/datasets/imagenet.py:
+    :sha1: 71551222e350eb9753e91afa0f6e68feb3696908
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/tools/eval.py:
+    :sha1: af0a01218a0590d654f82f32dc6585f78d5186f2
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/data/registry.py:
+    :sha1: e662644dc75aa0a76e3b4131e1fe976068b106fd
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/layers/registry.py:
+    :sha1: 11b4f5d5d5398b2c5e91c340b783bce1b2f0f61d
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/exps/: 
+  mae_lite/layers/__init__.py:
+    :sha1: ff67b5cc7c555c4cf75fd0de867b7e2758abcf5d
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/layers/lr_scheduler.py:
+    :sha1: 1ab63ae960e703875478e8006680d3d33488a253
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/registry.py:
+    :sha1: 3a91dad88bea2fd58447be96ff33fe452a0da6e9
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/layers/optimizer.py:
+    :sha1: faf44534dd730d76146f341ce58ae5af53218af7
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/env.py:
+    :sha1: d46281760250048f21409dabce788ec622abb12a
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/checkpoint.py:
+    :sha1: 87ae4300d1a4f0e3c147a26571a5aa0963838413
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/log.py:
+    :sha1: e53e14312bd824ef1881b4cf2997188f586e007a
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/cuda.py:
+    :sha1: 00f7ad9387c6fd63f45c87b203d70bae2daf42f3
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/torch_dist.py:
+    :sha1: 5056efe960836f864090830c752aa4e2e8681cc4
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/misc.py:
+    :sha1: 5d9eef4940a6ad0fdb2a91e793918a26eaa73aea
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/utils/__init__.py:
+    :sha1: 9748ecdc9e84214532032ca94befcc1964616e64
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/exps/base_exp.py:
+    :sha1: 6a1e93234c35ed707ccf3e9478de16cb1d069c31
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/exps/__init__.py:
+    :sha1: da39a3ee5e6b4b0d3255bfef95601890afd80709
+    :commit_time: 
+    :last_modified: 1716576827.0
+  mae_lite/exps/timm_imagenet_exp.py:
+    :sha1: c457cfd50437e1ed8e43c9c39a2323b99c77a2d9
+    :commit_time: 
+    :last_modified: 1716576827.0
+  requirements.txt:
+    :sha1: 49120a5460b3e959234cea05480de0f74b8a2924
+    :commit_time: 
+    :last_modified: 1716576827.0
+:commit: 

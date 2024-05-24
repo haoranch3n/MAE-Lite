@@ -8,6 +8,6 @@ tabulate
 scikit-image
 scipy
 tensorboard
-torch==1.9.0
-torchvision==0.10.0
+#torch==1.9.0
+#torchvision==0.10.0
 timm==0.4.12
