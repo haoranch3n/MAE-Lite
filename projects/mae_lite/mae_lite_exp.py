@@ -49,13 +49,11 @@ class MAE(nn.Module):
             if self.mixup_fn is not None:
                 images, _ = self.mixup_fn(images, target)
             model_output = self.model(images, self.mask_ratio)
-            if len(model_output) == 3:
-                loss, _, _ = self.model(images, self.mask_ratio)
-            elif len(model_output) == 2:
-                loss, _ = self.model(images, self.mask_ratio)
+            if len(model_output) > 1:
+                loss = model_output[0]
             else:
                 loss = self.model(images, self.mask_ratio)
-            print(len(model_output))
+
             if self.ema_model is not None:
                 self.ema_model.update(self.model)
             return loss, None
