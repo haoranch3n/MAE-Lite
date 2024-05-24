@@ -84,7 +84,8 @@ class DataPrefetcher:
 
         with torch.cuda.stream(self.stream):
             self.input_cuda()
-            self.next_target = self.next_target.cuda(non_blocking=True)
+            if self.next_target is not None:
+                self.next_target = self.next_target.cuda(non_blocking=True)
 
     def next(self):
         torch.cuda.current_stream().wait_stream(self.stream)
