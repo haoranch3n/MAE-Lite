@@ -1,0 +1,364 @@
+[Rank #0] | 2024-05-28 at 14:31:12 | INFO | gpuid: 0, args: <>Namespace(dist_backend='nccl', dist_url='tcp://cnvrg-job-notebooksession-ktvxrmtyhntfp8cmh8ya-1-678bb7448t4rvx:44301', batch_size=1024, max_epoch=300, devices='0,1,2,3,4,5,6,7', eval=True, exp_file='mae_lite_exp.py', ckpt='/cnvrg/model/mae_tiny_400e.pth.tar', amp=True, exp_options={'pretrain_exp_name': '/cnvrg/outputs/mae_tiny_400e_pretrained'}, world_size=8)
+[Rank #0] | 2024-05-28 at 14:31:12 | INFO | Used experiment configs:
+=====================  =======================================
+config key             value
+=====================  =======================================
+batch_size             1024
+max_epoch              300
+seed                   0
+data_format            image
+clip_grad              <class 'NoneType'>
+clip_mode              norm
+output_dir             /cnvrg/outputs
+exp_name               /cnvrg/projects/mae_lite/mae_lite_exp
+print_interval         10
+dump_interval          10
+eval_interval          10
+enable_tensorboard     True
+dataset                Fundus
+transform              typical_imagenet_transform
+image_size             224
+encoder_arch           mae_vit_tiny_patch16
+pretrained             False
+num_classes            1000
+global_pool            <class 'NoneType'>
+img_size               224
+input_size             <class 'NoneType'>
+crop_pct               <class 'NoneType'>
+mean                   <class 'NoneType'>
+std                    <class 'NoneType'>
+interpolation
+validation_batch_size  <class 'NoneType'>
+validation_dataset     <class 'NoneType'>
+opt                    adamw
+opt_eps                1e-08
+opt_betas              (0.9, 0.95)
+momentum               0.9
+weight_decay           0.05
+sched                  warmcos
+basic_lr_per_img       5.859375e-09
+lr_noise               <class 'NoneType'>
+lr_noise_pct           0.67
+lr_noise_std           1.0
+lr_cycle_mul           1.0
+lr_cycle_decay         0.5
+lr_cycle_limit         1
+lr_k_decay             1.0
+warmup_lr_per_img      7.8125e-07
+min_lr_per_img         7.8125e-09
+epochs                 300
+epoch_repeats          0
+start_epoch            <class 'NoneType'>
+decay_epochs           <class 'NoneType'>
+warmup_epochs          40
+cooldown_epochs        10
+patience_epochs        10
+decay_rate             0.1
+no_aug                 False
+scale                  (0.08, 1.0)
+ratio                  (0.75, 1.3333333333333333)
+hflip                  0.5
+vflip                  0.0
+color_jitter           <class 'NoneType'>
+aa                     <class 'NoneType'>
+reprob                 0.0
+remode                 pixel
+recount                1
+resplit                False
+mixup                  0.0
+cutmix                 0.0
+cutmix_minmax          <class 'NoneType'>
+mixup_prob             1.0
+mixup_switch_prob      0.5
+mixup_mode             batch
+mixup_off_epoch        0
+smoothing              0.0
+train_interpolation    random
+drop                   0.0
+drop_connect           <class 'NoneType'>
+drop_path              <class 'NoneType'>
+drop_block             <class 'NoneType'>
+bn_tf                  False
+bn_momentum            <class 'NoneType'>
+bn_eps                 <class 'NoneType'>
+sync_bn                False
+dist_bn                reduce
+model_ema              False
+model_ema_force_cpu    False
+model_ema_decay        0.9998
+num_workers            10
+weights_prefix         model
+norm_pix_loss          True
+mask_ratio             0.75
+warmup_lr              0.0
+min_lr                 0.0
+save_folder_prefix
+pretrain_exp_name      /cnvrg/outputs/mae_tiny_400e_pretrained
+=====================  =======================================
+[Rank #0] | 2024-05-28 at 14:31:12 | INFO | List of override configs:
+
+'pretrain_exp_name' is set to '/cnvrg/outputs/mae_tiny_400e_pretrained'
+[Rank #0] | 2024-05-28 at 14:31:12 | INFO | Environment info:
+----------------------  --------------------------------------------------------------
+sys.platform            linux
+Python                  3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]
+numpy                   1.26.4
+Pillow                  9.2.0
+PyTorch                 2.1.0a0+29c30b1 @/usr/local/lib/python3.10/dist-packages/torch
+PyTorch debug build     False
+CUDA available          True
+GPU 0,1,2,3,4,5,6,7     NVIDIA A100-SXM4-80GB
+CUDA_HOME               /usr/local/cuda
+NVCC                    Build cuda_12.2.r12.2/compiler.33053471_0
+TORCH_CUDA_ARCH_LIST    5.2 6.0 6.1 7.0 7.5 8.0 8.6 9.0+PTX
+torchvision             0.16.0a0 @/usr/local/lib/python3.10/dist-packages/torchvision
+torchvision arch flags  sm_52, sm_60, sm_61, sm_70, sm_75, sm_80, sm_86, sm_90
+cv2                     4.7.0
+----------------------  --------------------------------------------------------------
+Git status: unknown
+----------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 11.4
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2021.1-Product Build 20201104 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.7.3 (Git Hash N/A)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 12.2
+  - NVCC architecture flags: -gencode;arch=compute_52,code=sm_52;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_90,code=compute_90
+  - CuDNN 8.9.4
+  - Magma 2.6.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=12.2, CUDNN_VERSION=8.9.4, CXX_COMPILER=/usr/bin/c++, CXX_FLAGS=-fno-gnu-unique -D_GLIBCXX_USE_CXX11_ABI=1 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-invalid-partial-specialization -Wno-unused-private-field -Wno-aligned-allocation-unavailable -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=ON, TORCH_VERSION=2.1.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=ON, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | Illustration of model strcutures:
+MAE(
+  (model): MaskedAutoencoderViT(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 192, kernel_size=(16, 16), stride=(16, 16))
+      (norm): Identity()
+    )
+    (blocks): ModuleList(
+      (0-11): 12 x Block(
+        (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=192, out_features=576, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=192, out_features=192, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (identity): Identity()
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=192, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=768, out_features=192, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (norm): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+    (decoder_embed): Linear(in_features=192, out_features=96, bias=True)
+    (decoder_blocks): ModuleList(
+      (0): Block(
+        (norm1): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=96, out_features=288, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=96, out_features=96, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+          (identity): Identity()
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=96, out_features=384, bias=True)
+          (act): GELU(approximate='none')
+          (fc2): Linear(in_features=384, out_features=96, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (decoder_norm): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+    (decoder_pred): Linear(in_features=96, out_features=768, bias=True)
+  )
+)
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | Automatic Mixed Precision is enabled!
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | Load pretrained checkpoints from /cnvrg/model/mae_tiny_400e.pth.tar.
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | Model params [] are not loaded
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | State-dict params [] are not used
+[Rank #0] | 2024-05-28 at 14:31:13 | INFO | Training start...
+[Rank #0] | 2024-05-28 at 14:31:14 | INFO | ---> start train epoch1
+[Rank #0] | 2024-05-28 at 14:31:16 | INFO | [1/300], remain:0d.00h.24m, It:[10/20], Max-Mem:1701M, Data-Time:0.024, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:31:17 | INFO | [1/300], remain:0d.00h.16m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0226
+[Rank #0] | 2024-05-28 at 14:31:17 | INFO | ---> start train epoch2
+[Rank #0] | 2024-05-28 at 14:31:19 | INFO | [2/300], remain:0d.00h.11m, It:[10/20], Max-Mem:1701M, Data-Time:0.026, LR:0.0000, Loss:0.0232
+[Rank #0] | 2024-05-28 at 14:31:20 | INFO | [2/300], remain:0d.00h.09m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0231
+[Rank #0] | 2024-05-28 at 14:31:20 | INFO | ---> start train epoch3
+[Rank #0] | 2024-05-28 at 14:31:22 | INFO | [3/300], remain:0d.00h.13m, It:[10/20], Max-Mem:1701M, Data-Time:0.024, LR:0.0000, Loss:0.0226
+[Rank #0] | 2024-05-28 at 14:31:22 | INFO | [3/300], remain:0d.00h.10m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0228
+[Rank #0] | 2024-05-28 at 14:31:22 | INFO | ---> start train epoch4
+[Rank #0] | 2024-05-28 at 14:31:24 | INFO | [4/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.029, LR:0.0000, Loss:0.0226
+[Rank #0] | 2024-05-28 at 14:31:25 | INFO | [4/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0224
+[Rank #0] | 2024-05-28 at 14:31:25 | INFO | ---> start train epoch5
+[Rank #0] | 2024-05-28 at 14:31:26 | INFO | [5/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:31:27 | INFO | [5/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0229
+[Rank #0] | 2024-05-28 at 14:31:27 | INFO | ---> start train epoch6
+[Rank #0] | 2024-05-28 at 14:31:29 | INFO | [6/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.025, LR:0.0000, Loss:0.0236
+[Rank #0] | 2024-05-28 at 14:31:30 | INFO | [6/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0212
+[Rank #0] | 2024-05-28 at 14:31:30 | INFO | ---> start train epoch7
+[Rank #0] | 2024-05-28 at 14:31:31 | INFO | [7/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.022, LR:0.0000, Loss:0.0238
+[Rank #0] | 2024-05-28 at 14:31:32 | INFO | [7/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0229
+[Rank #0] | 2024-05-28 at 14:31:32 | INFO | ---> start train epoch8
+[Rank #0] | 2024-05-28 at 14:31:33 | INFO | [8/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0224
+[Rank #0] | 2024-05-28 at 14:31:34 | INFO | [8/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0229
+[Rank #0] | 2024-05-28 at 14:31:34 | INFO | ---> start train epoch9
+[Rank #0] | 2024-05-28 at 14:31:36 | INFO | [9/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0230
+[Rank #0] | 2024-05-28 at 14:31:37 | INFO | [9/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0235
+[Rank #0] | 2024-05-28 at 14:31:37 | INFO | ---> start train epoch10
+[Rank #0] | 2024-05-28 at 14:31:38 | INFO | [10/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.026, LR:0.0000, Loss:0.0238
+[Rank #0] | 2024-05-28 at 14:31:39 | INFO | [10/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0216
+[Rank #0] | 2024-05-28 at 14:31:39 | INFO | ---> start train epoch11
+[Rank #0] | 2024-05-28 at 14:31:41 | INFO | [11/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.028, LR:0.0000, Loss:0.0228
+[Rank #0] | 2024-05-28 at 14:31:41 | INFO | [11/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0205
+[Rank #0] | 2024-05-28 at 14:31:41 | INFO | ---> start train epoch12
+[Rank #0] | 2024-05-28 at 14:31:43 | INFO | [12/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.026, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:31:44 | INFO | [12/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0228
+[Rank #0] | 2024-05-28 at 14:31:44 | INFO | ---> start train epoch13
+[Rank #0] | 2024-05-28 at 14:31:45 | INFO | [13/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0230
+[Rank #0] | 2024-05-28 at 14:31:46 | INFO | [13/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0248
+[Rank #0] | 2024-05-28 at 14:31:46 | INFO | ---> start train epoch14
+[Rank #0] | 2024-05-28 at 14:31:48 | INFO | [14/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.033, LR:0.0000, Loss:0.0208
+[Rank #0] | 2024-05-28 at 14:31:48 | INFO | [14/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0218
+[Rank #0] | 2024-05-28 at 14:31:48 | INFO | ---> start train epoch15
+[Rank #0] | 2024-05-28 at 14:31:50 | INFO | [15/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.022, LR:0.0000, Loss:0.0219
+[Rank #0] | 2024-05-28 at 14:31:51 | INFO | [15/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0219
+[Rank #0] | 2024-05-28 at 14:31:51 | INFO | ---> start train epoch16
+[Rank #0] | 2024-05-28 at 14:31:52 | INFO | [16/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0210
+[Rank #0] | 2024-05-28 at 14:31:53 | INFO | [16/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0218
+[Rank #0] | 2024-05-28 at 14:31:53 | INFO | ---> start train epoch17
+[Rank #0] | 2024-05-28 at 14:31:55 | INFO | [17/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0222
+[Rank #0] | 2024-05-28 at 14:31:55 | INFO | [17/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0218
+[Rank #0] | 2024-05-28 at 14:31:55 | INFO | ---> start train epoch18
+[Rank #0] | 2024-05-28 at 14:31:57 | INFO | [18/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0243
+[Rank #0] | 2024-05-28 at 14:31:58 | INFO | [18/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:31:58 | INFO | ---> start train epoch19
+[Rank #0] | 2024-05-28 at 14:31:59 | INFO | [19/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.028, LR:0.0000, Loss:0.0240
+[Rank #0] | 2024-05-28 at 14:32:00 | INFO | [19/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0224
+[Rank #0] | 2024-05-28 at 14:32:00 | INFO | ---> start train epoch20
+[Rank #0] | 2024-05-28 at 14:32:02 | INFO | [20/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.034, LR:0.0000, Loss:0.0225
+[Rank #0] | 2024-05-28 at 14:32:03 | INFO | [20/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0219
+[Rank #0] | 2024-05-28 at 14:32:03 | INFO | ---> start train epoch21
+[Rank #0] | 2024-05-28 at 14:32:04 | INFO | [21/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.023, LR:0.0000, Loss:0.0230
+[Rank #0] | 2024-05-28 at 14:32:05 | INFO | [21/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0234
+[Rank #0] | 2024-05-28 at 14:32:05 | INFO | ---> start train epoch22
+[Rank #0] | 2024-05-28 at 14:32:07 | INFO | [22/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0215
+[Rank #0] | 2024-05-28 at 14:32:07 | INFO | [22/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:32:07 | INFO | ---> start train epoch23
+[Rank #0] | 2024-05-28 at 14:32:09 | INFO | [23/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.033, LR:0.0000, Loss:0.0227
+[Rank #0] | 2024-05-28 at 14:32:10 | INFO | [23/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:32:10 | INFO | ---> start train epoch24
+[Rank #0] | 2024-05-28 at 14:32:11 | INFO | [24/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0212
+[Rank #0] | 2024-05-28 at 14:32:12 | INFO | [24/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0227
+[Rank #0] | 2024-05-28 at 14:32:12 | INFO | ---> start train epoch25
+[Rank #0] | 2024-05-28 at 14:32:14 | INFO | [25/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0235
+[Rank #0] | 2024-05-28 at 14:32:14 | INFO | [25/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0213
+[Rank #0] | 2024-05-28 at 14:32:14 | INFO | ---> start train epoch26
+[Rank #0] | 2024-05-28 at 14:32:16 | INFO | [26/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:32:17 | INFO | [26/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:32:17 | INFO | ---> start train epoch27
+[Rank #0] | 2024-05-28 at 14:32:18 | INFO | [27/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0210
+[Rank #0] | 2024-05-28 at 14:32:19 | INFO | [27/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:32:19 | INFO | ---> start train epoch28
+[Rank #0] | 2024-05-28 at 14:32:21 | INFO | [28/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0224
+[Rank #0] | 2024-05-28 at 14:32:22 | INFO | [28/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0195
+[Rank #0] | 2024-05-28 at 14:32:22 | INFO | ---> start train epoch29
+[Rank #0] | 2024-05-28 at 14:32:23 | INFO | [29/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0241
+[Rank #0] | 2024-05-28 at 14:32:24 | INFO | [29/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:32:24 | INFO | ---> start train epoch30
+[Rank #0] | 2024-05-28 at 14:32:25 | INFO | [30/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0210
+[Rank #0] | 2024-05-28 at 14:32:26 | INFO | [30/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0213
+[Rank #0] | 2024-05-28 at 14:32:26 | INFO | ---> start train epoch31
+[Rank #0] | 2024-05-28 at 14:32:28 | INFO | [31/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.034, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:32:29 | INFO | [31/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0230
+[Rank #0] | 2024-05-28 at 14:32:29 | INFO | ---> start train epoch32
+[Rank #0] | 2024-05-28 at 14:32:30 | INFO | [32/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.033, LR:0.0000, Loss:0.0238
+[Rank #0] | 2024-05-28 at 14:32:31 | INFO | [32/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:32:31 | INFO | ---> start train epoch33
+[Rank #0] | 2024-05-28 at 14:32:33 | INFO | [33/300], remain:0d.00h.09m, It:[10/20], Max-Mem:1701M, Data-Time:0.034, LR:0.0000, Loss:0.0229
+[Rank #0] | 2024-05-28 at 14:32:33 | INFO | [33/300], remain:0d.00h.08m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:32:33 | INFO | ---> start train epoch34
+[Rank #0] | 2024-05-28 at 14:32:35 | INFO | [34/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.025, LR:0.0000, Loss:0.0235
+[Rank #0] | 2024-05-28 at 14:32:36 | INFO | [34/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0226
+[Rank #0] | 2024-05-28 at 14:32:36 | INFO | ---> start train epoch35
+[Rank #0] | 2024-05-28 at 14:32:37 | INFO | [35/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:32:38 | INFO | [35/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0250
+[Rank #0] | 2024-05-28 at 14:32:38 | INFO | ---> start train epoch36
+[Rank #0] | 2024-05-28 at 14:32:40 | INFO | [36/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.028, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:32:40 | INFO | [36/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:32:40 | INFO | ---> start train epoch37
+[Rank #0] | 2024-05-28 at 14:32:42 | INFO | [37/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.029, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:32:43 | INFO | [37/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:32:43 | INFO | ---> start train epoch38
+[Rank #0] | 2024-05-28 at 14:32:44 | INFO | [38/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.034, LR:0.0000, Loss:0.0232
+[Rank #0] | 2024-05-28 at 14:32:45 | INFO | [38/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0213
+[Rank #0] | 2024-05-28 at 14:32:45 | INFO | ---> start train epoch39
+[Rank #0] | 2024-05-28 at 14:32:47 | INFO | [39/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.025, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:32:47 | INFO | [39/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0217
+[Rank #0] | 2024-05-28 at 14:32:47 | INFO | ---> start train epoch40
+[Rank #0] | 2024-05-28 at 14:32:49 | INFO | [40/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.025, LR:0.0000, Loss:0.0227
+[Rank #0] | 2024-05-28 at 14:32:50 | INFO | [40/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:32:50 | INFO | ---> start train epoch41
+[Rank #0] | 2024-05-28 at 14:32:51 | INFO | [41/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.020, LR:0.0000, Loss:0.0217
+[Rank #0] | 2024-05-28 at 14:32:52 | INFO | [41/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:32:52 | INFO | ---> start train epoch42
+[Rank #0] | 2024-05-28 at 14:32:54 | INFO | [42/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.037, LR:0.0000, Loss:0.0216
+[Rank #0] | 2024-05-28 at 14:32:54 | INFO | [42/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0222
+[Rank #0] | 2024-05-28 at 14:32:54 | INFO | ---> start train epoch43
+[Rank #0] | 2024-05-28 at 14:32:56 | INFO | [43/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.037, LR:0.0000, Loss:0.0225
+[Rank #0] | 2024-05-28 at 14:32:57 | INFO | [43/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0212
+[Rank #0] | 2024-05-28 at 14:32:57 | INFO | ---> start train epoch44
+[Rank #0] | 2024-05-28 at 14:32:58 | INFO | [44/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.020, LR:0.0000, Loss:0.0210
+[Rank #0] | 2024-05-28 at 14:32:59 | INFO | [44/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:32:59 | INFO | ---> start train epoch45
+[Rank #0] | 2024-05-28 at 14:33:01 | INFO | [45/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.029, LR:0.0000, Loss:0.0229
+[Rank #0] | 2024-05-28 at 14:33:02 | INFO | [45/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:33:02 | INFO | ---> start train epoch46
+[Rank #0] | 2024-05-28 at 14:33:03 | INFO | [46/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.034, LR:0.0000, Loss:0.0232
+[Rank #0] | 2024-05-28 at 14:33:04 | INFO | [46/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0211
+[Rank #0] | 2024-05-28 at 14:33:04 | INFO | ---> start train epoch47
+[Rank #0] | 2024-05-28 at 14:33:05 | INFO | [47/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.031, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:33:06 | INFO | [47/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0219
+[Rank #0] | 2024-05-28 at 14:33:06 | INFO | ---> start train epoch48
+[Rank #0] | 2024-05-28 at 14:33:08 | INFO | [48/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.033, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:33:09 | INFO | [48/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0203
+[Rank #0] | 2024-05-28 at 14:33:09 | INFO | ---> start train epoch49
+[Rank #0] | 2024-05-28 at 14:33:10 | INFO | [49/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0227
+[Rank #0] | 2024-05-28 at 14:33:11 | INFO | [49/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:33:11 | INFO | ---> start train epoch50
+[Rank #0] | 2024-05-28 at 14:33:13 | INFO | [50/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.033, LR:0.0000, Loss:0.0214
+[Rank #0] | 2024-05-28 at 14:33:13 | INFO | [50/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0228
+[Rank #0] | 2024-05-28 at 14:33:14 | INFO | ---> start train epoch51
+[Rank #0] | 2024-05-28 at 14:33:15 | INFO | [51/300], remain:0d.00h.07m, It:[10/20], Max-Mem:1701M, Data-Time:0.024, LR:0.0000, Loss:0.0207
+[Rank #0] | 2024-05-28 at 14:33:16 | INFO | [51/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0226
+[Rank #0] | 2024-05-28 at 14:33:16 | INFO | ---> start train epoch52
+[Rank #0] | 2024-05-28 at 14:33:17 | INFO | [52/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.035, LR:0.0000, Loss:0.0224
+[Rank #0] | 2024-05-28 at 14:33:18 | INFO | [52/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0220
+[Rank #0] | 2024-05-28 at 14:33:18 | INFO | ---> start train epoch53
+[Rank #0] | 2024-05-28 at 14:33:20 | INFO | [53/300], remain:0d.00h.08m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0223
+[Rank #0] | 2024-05-28 at 14:33:20 | INFO | [53/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:33:20 | INFO | ---> start train epoch54
+[Rank #0] | 2024-05-28 at 14:33:22 | INFO | [54/300], remain:0d.00h.07m, It:[10/20], Max-Mem:1701M, Data-Time:0.032, LR:0.0000, Loss:0.0221
+[Rank #0] | 2024-05-28 at 14:33:23 | INFO | [54/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0251
+[Rank #0] | 2024-05-28 at 14:33:23 | INFO | ---> start train epoch55
+[Rank #0] | 2024-05-28 at 14:33:24 | INFO | [55/300], remain:0d.00h.07m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0213
+[Rank #0] | 2024-05-28 at 14:33:25 | INFO | [55/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0206
+[Rank #0] | 2024-05-28 at 14:33:25 | INFO | ---> start train epoch56
+[Rank #0] | 2024-05-28 at 14:33:27 | INFO | [56/300], remain:0d.00h.07m, It:[10/20], Max-Mem:1701M, Data-Time:0.030, LR:0.0000, Loss:0.0225
+[Rank #0] | 2024-05-28 at 14:33:28 | INFO | [56/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0232
+[Rank #0] | 2024-05-28 at 14:33:28 | INFO | ---> start train epoch57
+[Rank #0] | 2024-05-28 at 14:33:29 | INFO | [57/300], remain:0d.00h.07m, It:[10/20], Max-Mem:1701M, Data-Time:0.026, LR:0.0000, Loss:0.0212
+[Rank #0] | 2024-05-28 at 14:33:30 | INFO | [57/300], remain:0d.00h.07m, It:[20/20], Max-Mem:1701M, Data-Time:0.000, LR:0.0000, Loss:0.0207
+[Rank #0] | 2024-05-28 at 14:33:30 | INFO | ---> start train epoch58

@@ -85,7 +85,7 @@ class Exp(BaseExp):
 
         # schedule
         self.sched = "warmcos"
-        self.basic_lr_per_img = 1.5e-4 / 256
+        self.basic_lr_per_img = 1.5e-6 / 256
         self.warmup_lr = 0.0
         self.min_lr = 0.0
         self.warmup_epochs = 40
@@ -96,7 +96,7 @@ class Exp(BaseExp):
         self.ratio = (3.0 / 4, 4.0 / 3.0)
         self.hflip = 0.5
         self.vflip = 0.0
-        self.color_jitter = None
+        self.color_jitter = 0.4
         self.smoothing = 0.0
 
         # self.num_workers = 10
@@ -105,6 +105,7 @@ class Exp(BaseExp):
         # self.enable_tensorboard = True
         self.save_folder_prefix = ""
         self.exp_name = os.path.splitext(os.path.realpath(__file__).split("playground/")[-1])[0]
+        print(self.exp_name)
 
     def get_model(self):
         if "model" not in self.__dict__:
