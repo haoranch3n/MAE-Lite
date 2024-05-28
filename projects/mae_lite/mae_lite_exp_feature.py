@@ -168,24 +168,24 @@ class Exp(BaseExp):
     #         logger.info("Model params {} are not loaded".format(msg.missing_keys))
     #         logger.info("State-dict params {} are not used".format(msg.unexpected_keys))
 
-    # def set_model_weights(self, ckpt_path, map_location="cpu"):
-    #     if not os.path.isfile(ckpt_path):
-    #         from torch.nn.modules.module import _IncompatibleKeys
+    def set_model_weights(self, ckpt_path, map_location="cpu"):
+        if not os.path.isfile(ckpt_path):
+            from torch.nn.modules.module import _IncompatibleKeys
 
-    #         logger.info("No checkpoints found! Training from scratch!")
-    #         return _IncompatibleKeys(missing_keys=None, unexpected_keys=None)
-    #     ckpt = torch.load(ckpt_path, map_location="cpu")
-    #     weights_prefix = self.weights_prefix
-    #     if not weights_prefix:
-    #         state_dict = {"model." + k: v for k, v in ckpt["model"].items()}
-    #     else:
-    #         if weights_prefix and not weights_prefix.endswith("."):
-    #             weights_prefix += "."
-    #         if all(key.startswith("module.") for key in ckpt["model"].keys()):
-    #             weights_prefix = "module." + weights_prefix
-    #         state_dict = {k.replace(weights_prefix, "model."): v for k, v in ckpt["model"].items()}
-    #     msg = self.get_model().load_state_dict(state_dict, strict=False)
-    #     return msg
+            logger.info("No checkpoints found! Training from scratch!")
+            return _IncompatibleKeys(missing_keys=None, unexpected_keys=None)
+        ckpt = torch.load(ckpt_path, map_location="cpu")
+        weights_prefix = self.weights_prefix
+        if not weights_prefix:
+            state_dict = {"model." + k: v for k, v in ckpt["model"].items()}
+        else:
+            if weights_prefix and not weights_prefix.endswith("."):
+                weights_prefix += "."
+            if all(key.startswith("module.") for key in ckpt["model"].keys()):
+                weights_prefix = "module." + weights_prefix
+            state_dict = {k.replace(weights_prefix, "model."): v for k, v in ckpt["model"].items()}
+        msg = self.get_model().load_state_dict(state_dict, strict=False)
+        return msg
 
 
 
@@ -229,14 +229,16 @@ if __name__ == "__main__":
     exp = Exp(2)
     print(exp.exp_name)
     loader = exp.get_data_loader()
-    model = exp.get_model()
-    print(model)
+    # model = exp.get_model()
+    # print(model)
     opt = exp.get_optimizer()
     sched = exp.get_lr_scheduler()
 
-    checkpoint = torch.load('/cnvrg/model/epoch_500_ckpt.pth.tar')
-    model.load_state_dict(checkpoint)
-    
+    ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
+    model = exp.set_model_weights(ckpt_path, map_location="cpu")
+    # checkpoint = torch.load()
+    # model.load_state_dict(checkpoint)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
     model.to(device)  # Move your model to the GPU
