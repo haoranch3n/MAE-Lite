@@ -85,7 +85,7 @@ class Exp(BaseExp):
 
         # schedule
         self.sched = "warmcos"
-        self.basic_lr_per_img = 1.5e-6 / 256
+        self.basic_lr_per_img = 1.5e-4 / 256
         self.warmup_lr = 0.0
         self.min_lr = 0.0
         self.warmup_epochs = 40
@@ -142,35 +142,35 @@ class Exp(BaseExp):
         )
         return scheduler
     
-    def set_current_state(self, current_step, ckpt_path=None):
-        if current_step == 0:
-            # load pretrain ckpt
-            if ckpt_path is None:
-                assert self.pretrain_exp_name is not None, "Please provide a valid 'pretrain_exp_name'!"
-                ckpt_path = os.path.join(self.output_dir, self.pretrain_exp_name, "last_epoch_ckpt.pth.tar")
-            logger.info("Load pretrained checkpoints from {}.".format(ckpt_path))
-            msg = self.set_model_weights(ckpt_path, map_location="cpu")
-            logger.info("Model params {} are not loaded".format(msg.missing_keys))
-            logger.info("State-dict params {} are not used".format(msg.unexpected_keys))
+    # def set_current_state(self, current_step, ckpt_path=None):
+    #     if current_step == 0:
+    #         # load pretrain ckpt
+    #         if ckpt_path is None:
+    #             assert self.pretrain_exp_name is not None, "Please provide a valid 'pretrain_exp_name'!"
+    #             ckpt_path = os.path.join(self.output_dir, self.pretrain_exp_name, "last_epoch_ckpt.pth.tar")
+    #         logger.info("Load pretrained checkpoints from {}.".format(ckpt_path))
+    #         msg = self.set_model_weights(ckpt_path, map_location="cpu")
+    #         logger.info("Model params {} are not loaded".format(msg.missing_keys))
+    #         logger.info("State-dict params {} are not used".format(msg.unexpected_keys))
 
-    def set_model_weights(self, ckpt_path, map_location="cpu"):
-        if not os.path.isfile(ckpt_path):
-            from torch.nn.modules.module import _IncompatibleKeys
+    # def set_model_weights(self, ckpt_path, map_location="cpu"):
+    #     if not os.path.isfile(ckpt_path):
+    #         from torch.nn.modules.module import _IncompatibleKeys
 
-            logger.info("No checkpoints found! Training from scratch!")
-            return _IncompatibleKeys(missing_keys=None, unexpected_keys=None)
-        ckpt = torch.load(ckpt_path, map_location="cpu")
-        weights_prefix = self.weights_prefix
-        if not weights_prefix:
-            state_dict = {"model." + k: v for k, v in ckpt["model"].items()}
-        else:
-            if weights_prefix and not weights_prefix.endswith("."):
-                weights_prefix += "."
-            if all(key.startswith("module.") for key in ckpt["model"].keys()):
-                weights_prefix = "module." + weights_prefix
-            state_dict = {k.replace(weights_prefix, "model."): v for k, v in ckpt["model"].items()}
-        msg = self.get_model().load_state_dict(state_dict, strict=False)
-        return msg
+    #         logger.info("No checkpoints found! Training from scratch!")
+    #         return _IncompatibleKeys(missing_keys=None, unexpected_keys=None)
+    #     ckpt = torch.load(ckpt_path, map_location="cpu")
+    #     weights_prefix = self.weights_prefix
+    #     if not weights_prefix:
+    #         state_dict = {"model." + k: v for k, v in ckpt["model"].items()}
+    #     else:
+    #         if weights_prefix and not weights_prefix.endswith("."):
+    #             weights_prefix += "."
+    #         if all(key.startswith("module.") for key in ckpt["model"].keys()):
+    #             weights_prefix = "module." + weights_prefix
+    #         state_dict = {k.replace(weights_prefix, "model."): v for k, v in ckpt["model"].items()}
+    #     msg = self.get_model().load_state_dict(state_dict, strict=False)
+    #     return msg
 
 
 if __name__ == "__main__":
