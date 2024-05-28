@@ -236,12 +236,13 @@ if __name__ == "__main__":
 
     ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
     model = exp.set_model_weights(ckpt_path, map_location="cpu")
+    print(model)
     # checkpoint = torch.load()
     # model.load_state_dict(checkpoint)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
-    model.to(device)  # Move your model to the GPU
+    # model.to(device)  # Move your model to the GPU
 
     dir_path = "/data/fundus"
     dataset = CustomImageDataset(dir_path)
