@@ -180,8 +180,8 @@ class MaskedAutoencoderViT(nn.Module):
         x = self.patch_embed(x)
 
         num_patches = x.shape[1]
-        print(f"Number of patches: {num_patches}")
-        print(x.shape)
+        # print(f"Number of patches: {num_patches}")
+        # print(x.shape)
         # add pos embed w/o cls token
         x = x + self.pos_embed[:, 1:, :]
 
@@ -197,7 +197,7 @@ class MaskedAutoencoderViT(nn.Module):
         for blk in self.blocks:
             x = blk(x)
         x = self.norm(x)
-        print(x.shape)
+        # print(x.shape)
         return x, mask, ids_restore, ids_shuffle
 
     def forward_decoder(self, x, ids_restore):
@@ -247,9 +247,9 @@ class MaskedAutoencoderViT(nn.Module):
 
     def forward(self, imgs, mask_ratio=0.75, ids_shuffle=None, return_features=False):
         latent, mask, ids_restore, ids_shuffle = self.forward_encoder(imgs, mask_ratio, ids_shuffle)
-        print(latent.shape)
+        # print(latent.shape)
         if return_features:
-            return latent  # Return the latent features
+            return latent[:, 0]  # Return the latent features
         pred = self.forward_decoder(latent, ids_restore)  # [N, L, p*p*3]
         loss = self.forward_loss(imgs, pred, mask)
         return loss, pred, mask, ids_shuffle

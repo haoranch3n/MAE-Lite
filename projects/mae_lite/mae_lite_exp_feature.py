@@ -254,10 +254,10 @@ if __name__ == "__main__":
                 
                 # print("Model output:", model_output)  # Debug print statement
                 
-                if isinstance(model_output, tuple):
-                    image_features = model_output[0]  # Assuming the features are the first element of the tuple
-                else:
-                    image_features = model_output
+                # if isinstance(model_output, tuple):
+                #     image_features = model_output[0]  # Assuming the features are the first element of the tuple
+                # else:
+                image_features = model_output
                 
                 # Check if image_features is a tensor
                 if not isinstance(image_features, torch.Tensor):
