@@ -227,7 +227,8 @@ if __name__ == "__main__":
     opt = exp.get_optimizer()
     sched = exp.get_lr_scheduler()
 
-    ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
+    # ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
+    ckpt_path = '/cnvrg/projects/mae_lite/mae_lite_exp_pretrained/last_epoch_ckpt.pth.tar'
     msg = exp.set_model_weights(ckpt_path, map_location="cpu")  # Load the weights into the model
     print('---------')
     print(msg)  # Print the message object for missing/unexpected keys
@@ -284,7 +285,7 @@ if __name__ == "__main__":
             gc.collect()
     if not os.path.exists('/cnvrg/feature'):
         os.makedirs('/cnvrg/feature')
-    np.save('/cnvrg/feature/fundus_features.npy', final_img_features)
+    np.save('/cnvrg/feature/feature_pretrained.npy', final_img_features)
 
 
 
