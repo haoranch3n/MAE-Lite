@@ -222,24 +222,20 @@ class CustomImageDataset(Dataset):
 
 if __name__ == "__main__":
     exp = Exp(1)
-    # print(exp.exp_name)
     loader = exp.get_data_loader()
-    # model = exp.get_model()
-    # print(model)
+    model = exp.get_model()  # Get the model instance
     opt = exp.get_optimizer()
     sched = exp.get_lr_scheduler()
 
     ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
-    model = exp.set_model_weights(ckpt_path, map_location="cpu")
+    msg = exp.set_model_weights(ckpt_path, map_location="cpu")  # Load the weights into the model
     print('---------')
-    print(model)
+    print(msg)  # Print the message object for missing/unexpected keys
     print('---------')
-    # checkpoint = torch.load()
-    # model.load_state_dict(checkpoint)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
-    # model.to(device)  # Move your model to the GPU
+    model.to(device)  # Move your model to the GPU
 
     dir_path = "/data/fundus"
     dataset = CustomImageDataset(dir_path)
@@ -253,12 +249,12 @@ if __name__ == "__main__":
         try:
             with torch.no_grad():  # Disable gradient computation
                 img_t = image_tensors.to(device)
-                image_features = model(img_t) #384 small, #768 base, #1024 large
+                image_features = model(img_t)  # Forward pass through the model
                 image_features /= image_features.norm(dim=-1, keepdim=True)
                 image_features = image_features.cpu()
                 image_features = image_features.tolist()
 
-                # Append data to lists 
+                # Append data to lists
                 final_img_features.extend(image_features)
                 final_img_filepaths.extend(list(file_paths))
 
@@ -273,4 +269,5 @@ if __name__ == "__main__":
         finally:
             # Force garbage collection to run (optional, could be expensive)
             gc.collect()
+
 
