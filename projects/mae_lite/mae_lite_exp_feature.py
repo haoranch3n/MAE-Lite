@@ -232,6 +232,8 @@ if __name__ == "__main__":
     print('---------')
     print(msg)  # Print the message object for missing/unexpected keys
     print('---------')
+    print(model)
+    print('---------')
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
@@ -249,7 +251,12 @@ if __name__ == "__main__":
         try:
             with torch.no_grad():  # Disable gradient computation
                 img_t = image_tensors.to(device)
-                image_features = model(img_t)  # Forward pass through the model
+                model_output = model(img_t)  # Forward pass through the model
+                if isinstance(model_output, tuple):
+                    image_features = model_output[0]  # Assuming the features are the first element of the tuple
+                else:
+                    image_features = model_output
+                
                 image_features /= image_features.norm(dim=-1, keepdim=True)
                 image_features = image_features.cpu()
                 image_features = image_features.tolist()
@@ -269,5 +276,6 @@ if __name__ == "__main__":
         finally:
             # Force garbage collection to run (optional, could be expensive)
             gc.collect()
+
 
 
