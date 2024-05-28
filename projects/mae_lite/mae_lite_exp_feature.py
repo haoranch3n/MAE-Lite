@@ -221,22 +221,22 @@ class MAE(nn.Module):
             return model_output  # Return the features directly
 
 if __name__ == "__main__":
-    exp = Exp(8)
+    exp = Exp(1)
     loader = exp.get_data_loader()
-    model = exp.get_model()  # Get the model instance
+    model = exp.get_model()
     opt = exp.get_optimizer()
     sched = exp.get_lr_scheduler()
 
     ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
-    msg = exp.set_model_weights(ckpt_path, map_location="cpu")  # Load the weights into the model
+    msg = exp.set_model_weights(ckpt_path, map_location="cpu")
     print('---------')
-    print(msg)  # Print the message object for missing/unexpected keys
+    print(msg)
     print('---------')
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
-    model.to(device)  # Move your model to the GPU
-    model.eval()  # Set the model to evaluation mode
+    model.to(device)
+    model.eval()
 
     dir_path = "/data/fundus"
     dataset = CustomImageDataset(dir_path)
@@ -244,9 +244,30 @@ if __name__ == "__main__":
     train_dataloader = DataLoader(dataset, batch_size=1024, shuffle=False)
 
     final_img_features = []
-    # final_img_filepaths = []
+    final_img_filepaths = []
 
     for image_tensors, file_paths in tqdm(train_dataloader):
+        try:
+            with torch.no_grad():
+                img_t = image_tensors.to(device)
+                model_output = model(img_t, return_features=True)
+                image_features = model_output
+                if not isinstance(image_features, torch.Tensor):
+                    raise ValueError(f"Expected a tensor but got {type(image_features)}")
+                image_features /= image_features.norm(dim=-1, keepdim=True)
+                image_features = image_features.cpu()
+                image_features = image_features.tolist()
+                final_img_features.extend(image_features)
+                final_img_filepaths.extend(list(file_paths))
+            del img_t
+            del image_features
+            torch.cuda.empty_cache()
+        except Exception as e:
+            print("Exception occurred: ", e)
+            break
+        finally:
+            gc.collect()
+
         try:
             with torch.no_grad():  # Disable gradient computation
                 img_t = image_tensors.to(device)
@@ -285,6 +306,7 @@ if __name__ == "__main__":
     if not os.path.exists('/cnvrg/feature'):
         os.makedirs('/cnvrg/feature')
     np.save('/cnvrg/feature/fundus_features.npy', final_img_features)
+    print(final_img_features.shape)
 
 
 

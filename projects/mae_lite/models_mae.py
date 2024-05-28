@@ -175,26 +175,19 @@ class MaskedAutoencoderViT(nn.Module):
 
         return x_masked, mask, ids_restore, ids_shuffle
 
-    def forward_encoder(self, x, mask_ratio, ids_shuffle=None):
-        # embed patches
+     def forward_encoder(self, x, mask_ratio, ids_shuffle=None):
         x = self.patch_embed(x)
-
-        # add pos embed w/o cls token
+        num_patches = x.shape[1]
+        print(f"Number of patches: {num_patches}")
+        print(f"Patch size: {self.patch_size}")
         x = x + self.pos_embed[:, 1:, :]
-
-        # masking: length -> length * mask_ratio
-        x, mask, ids_restore, ids_shuffle = self.random_masking(x, mask_ratio, ids_shuffle)
-
-        # append cls token
+        x, mask, ids_restore, ids_shuffle = self.random_masking(x, mask_ratio)
         cls_token = self.cls_token + self.pos_embed[:, :1, :]
         cls_tokens = cls_token.expand(x.shape[0], -1, -1)
         x = torch.cat((cls_tokens, x), dim=1)
-
-        # apply Transformer blocks
         for blk in self.blocks:
             x = blk(x)
         x = self.norm(x)
-
         return x, mask, ids_restore, ids_shuffle
 
     def forward_decoder(self, x, ids_restore):
@@ -245,8 +238,9 @@ class MaskedAutoencoderViT(nn.Module):
     def forward(self, imgs, mask_ratio=0.75, ids_shuffle=None, return_features=False):
         latent, mask, ids_restore, ids_shuffle = self.forward_encoder(imgs, mask_ratio, ids_shuffle)
         if return_features:
-            return latent  # Return the latent features
-        pred = self.forward_decoder(latent, ids_restore)  # [N, L, p*p*3]
+            cls_token = latent[:, 0]
+            return cls_token
+        pred = self.forward_decoder(latent, ids_restore)
         loss = self.forward_loss(imgs, pred, mask)
         return loss, pred, mask, ids_shuffle
 
