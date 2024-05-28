@@ -219,7 +219,6 @@ class CustomImageDataset(Dataset):
             image = self.transform(image)
         return image, img_path
 
-
 if __name__ == "__main__":
     exp = Exp(1)
     loader = exp.get_data_loader()
@@ -231,8 +230,6 @@ if __name__ == "__main__":
     msg = exp.set_model_weights(ckpt_path, map_location="cpu")  # Load the weights into the model
     print('---------')
     print(msg)  # Print the message object for missing/unexpected keys
-    print('---------')
-    print(model)
     print('---------')
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -252,11 +249,18 @@ if __name__ == "__main__":
             with torch.no_grad():  # Disable gradient computation
                 img_t = image_tensors.to(device)
                 model_output = model(img_t)  # Forward pass through the model
+                
+                print("Model output:", model_output)  # Debug print statement
+                
                 if isinstance(model_output, tuple):
                     image_features = model_output[0]  # Assuming the features are the first element of the tuple
                 else:
                     image_features = model_output
                 
+                # Check if image_features is a tensor
+                if not isinstance(image_features, torch.Tensor):
+                    raise ValueError(f"Expected a tensor but got {type(image_features)}")
+
                 image_features /= image_features.norm(dim=-1, keepdim=True)
                 image_features = image_features.cpu()
                 image_features = image_features.tolist()
@@ -276,6 +280,7 @@ if __name__ == "__main__":
         finally:
             # Force garbage collection to run (optional, could be expensive)
             gc.collect()
+
 
 
 
