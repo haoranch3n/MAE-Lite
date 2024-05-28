@@ -348,7 +348,7 @@ def main_worker(gpu, nr_gpu, args):
                 "best_top1_epoch": BEST_TOP1_EPOCH,
                 "scaler": scaler.state_dict()
             }
-            save_checkpoint(ckpt, is_best, file_name, "last_epoch")
+            save_checkpoint(ckpt, is_best, file_name, f'epoch_{epoch+1}')
 
     # ---------------------------------------- end of the training -------------------------------- #
     if rank == 0:
