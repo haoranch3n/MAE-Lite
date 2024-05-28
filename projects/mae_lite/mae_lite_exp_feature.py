@@ -169,11 +169,6 @@ class Exp(BaseExp):
     #         logger.info("State-dict params {} are not used".format(msg.unexpected_keys))
 
     def set_model_weights(self, ckpt_path, map_location="cpu"):
-        # if not os.path.isfile(ckpt_path):
-        #     from torch.nn.modules.module import _IncompatibleKeys
-
-        #     logger.info("No checkpoints found! Training from scratch!")
-        #     return _IncompatibleKeys(missing_keys=None, unexpected_keys=None)
         ckpt = torch.load(ckpt_path, map_location="cpu")
         weights_prefix = self.weights_prefix
         if not weights_prefix:
@@ -226,8 +221,8 @@ class CustomImageDataset(Dataset):
 
 
 if __name__ == "__main__":
-    exp = Exp(2)
-    print(exp.exp_name)
+    exp = Exp(1)
+    # print(exp.exp_name)
     loader = exp.get_data_loader()
     # model = exp.get_model()
     # print(model)
@@ -236,7 +231,9 @@ if __name__ == "__main__":
 
     ckpt_path = '/cnvrg/model/epoch_500_ckpt.pth.tar'
     model = exp.set_model_weights(ckpt_path, map_location="cpu")
+    print('---------')
     print(model)
+    print('---------')
     # checkpoint = torch.load()
     # model.load_state_dict(checkpoint)
 
