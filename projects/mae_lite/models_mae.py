@@ -178,11 +178,10 @@ class MaskedAutoencoderViT(nn.Module):
     def forward_encoder(self, x, mask_ratio, ids_shuffle=None):
         # embed patches
         x = self.patch_embed(x)
-        
+
         num_patches = x.shape[1]
         print(f"Number of patches: {num_patches}")
-        print(f"Patch size: {self.patch_size}")
-    
+        print(x.shape)
         # add pos embed w/o cls token
         x = x + self.pos_embed[:, 1:, :]
 
