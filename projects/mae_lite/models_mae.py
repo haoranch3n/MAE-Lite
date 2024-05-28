@@ -175,7 +175,7 @@ class MaskedAutoencoderViT(nn.Module):
 
         return x_masked, mask, ids_restore, ids_shuffle
 
-     def forward_encoder(self, x, mask_ratio, ids_shuffle=None):
+    def forward_encoder(self, x, mask_ratio, ids_shuffle=None):
         x = self.patch_embed(x)
         num_patches = x.shape[1]
         print(f"Number of patches: {num_patches}")
