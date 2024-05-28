@@ -189,11 +189,6 @@ class Exp(BaseExp):
 
 
 
-mae_lite_model = torch.load('projects/mae_lite/mae_lite_exp/epoch_500_ckpt.pth.tar')
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-print("Using device:", device)
-mae_lite_model.to(device)  # Move your model to the GPU
-
 
 def list_files(dataset_path):
     print("Listing files in:", dataset_path)
@@ -238,7 +233,13 @@ if __name__ == "__main__":
     print(model)
     opt = exp.get_optimizer()
     sched = exp.get_lr_scheduler()
+
+    checkpoint = torch.load('/cnvrg/model/epoch_500_ckpt.pth.tar')
+    model.load_state_dict(checkpoint)
     
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print("Using device:", device)
+    model.to(device)  # Move your model to the GPU
 
     dir_path = "/data/fundus"
     dataset = CustomImageDataset(dir_path)
