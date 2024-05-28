@@ -241,8 +241,11 @@ class MaskedAutoencoderViT(nn.Module):
         loss = (loss * mask).sum() / mask.sum()  # mean loss on removed patches
         return loss
 
-    def forward(self, imgs, mask_ratio=0.75, ids_shuffle=None):
+
+    def forward(self, imgs, mask_ratio=0.75, ids_shuffle=None, return_features=False):
         latent, mask, ids_restore, ids_shuffle = self.forward_encoder(imgs, mask_ratio, ids_shuffle)
+        if return_features:
+            return latent  # Return the latent features
         pred = self.forward_decoder(latent, ids_restore)  # [N, L, p*p*3]
         loss = self.forward_loss(imgs, pred, mask)
         return loss, pred, mask, ids_shuffle
