@@ -221,7 +221,7 @@ class MAE(nn.Module):
             return model_output  # Return the features directly
 
 if __name__ == "__main__":
-    exp = Exp(1)
+    exp = Exp(8)
     loader = exp.get_data_loader()
     model = exp.get_model()  # Get the model instance
     opt = exp.get_optimizer()
@@ -244,7 +244,7 @@ if __name__ == "__main__":
     train_dataloader = DataLoader(dataset, batch_size=1024, shuffle=False)
 
     final_img_features = []
-    final_img_filepaths = []
+    # final_img_filepaths = []
 
     for image_tensors, file_paths in tqdm(train_dataloader):
         try:
@@ -252,12 +252,12 @@ if __name__ == "__main__":
                 img_t = image_tensors.to(device)
                 model_output = model(img_t)  # Forward pass through the model
                 
-                print("Model output:", model_output)  # Debug print statement
+                # print("Model output:", model_output)  # Debug print statement
                 
-                if isinstance(model_output, tuple):
-                    image_features = model_output[0]  # Assuming the features are the first element of the tuple
-                else:
-                    image_features = model_output
+                # if isinstance(model_output, tuple):
+                #     image_features = model_output[0]  # Assuming the features are the first element of the tuple
+                # else:
+                #     image_features = model_output
                 
                 # Check if image_features is a tensor
                 if not isinstance(image_features, torch.Tensor):
@@ -269,7 +269,7 @@ if __name__ == "__main__":
 
                 # Append data to lists
                 final_img_features.extend(image_features)
-                final_img_filepaths.extend(list(file_paths))
+                # final_img_filepaths.extend(list(file_paths))
 
             # Explicitly delete tensors to free up memory
             del img_t
@@ -282,6 +282,9 @@ if __name__ == "__main__":
         finally:
             # Force garbage collection to run (optional, could be expensive)
             gc.collect()
+    if not os.path.exists('/cnvrg/feature'):
+        os.makedirs('/cnvrg/feature')
+    np.save('/cnvrg/feature/fundus_features.npy', final_img_features)
 
 
 
