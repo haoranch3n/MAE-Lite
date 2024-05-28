@@ -247,6 +247,7 @@ class MaskedAutoencoderViT(nn.Module):
 
     def forward(self, imgs, mask_ratio=0.75, ids_shuffle=None, return_features=False):
         latent, mask, ids_restore, ids_shuffle = self.forward_encoder(imgs, mask_ratio, ids_shuffle)
+        print(latent.shape)
         if return_features:
             return latent  # Return the latent features
         pred = self.forward_decoder(latent, ids_restore)  # [N, L, p*p*3]
