@@ -197,7 +197,7 @@ class MaskedAutoencoderViT(nn.Module):
         for blk in self.blocks:
             x = blk(x)
         x = self.norm(x)
-
+        print(x.shape)
         return x, mask, ids_restore, ids_shuffle
 
     def forward_decoder(self, x, ids_restore):
