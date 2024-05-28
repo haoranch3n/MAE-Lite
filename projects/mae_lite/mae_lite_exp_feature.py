@@ -30,52 +30,42 @@ from mae_lite.layers import build_lr_scheduler
 from models_mae import *
 
 
-class MAE(nn.Module):
-    def __init__(self, args, model):
-        super(MAE, self).__init__()
-        self.model = model
-        # mixup
-        mixup_active = args.mixup > 0 or args.cutmix > 0.0 or args.cutmix_minmax is not None
-        if mixup_active:
-            mixup_fn = Mixup(
-                mixup_alpha=args.mixup,
-                cutmix_alpha=args.cutmix,
-                cutmix_minmax=args.cutmix_minmax,
-                prob=args.mixup_prob,
-                switch_prob=args.mixup_switch_prob,
-                mode=args.mixup_mode,
-                label_smoothing=args.smoothing,
-                num_classes=args.num_classes,
-            )
-        else:
-            mixup_fn = None
-        self.mixup_fn = mixup_fn
-        self.mask_ratio = args.mask_ratio
-        # ema
-        if args.model_ema:
-            self.ema_model = ModelEmaV2(
-                self.model, decay=args.model_ema_decay, device="cpu" if args.model_ema_force_cpu else None
-            )
-        else:
-            self.ema_model = None
 
-    def forward(self, x, target=None, update_param=False):
-        if self.training:
-            images = x
-            if self.mixup_fn is not None:
-                images, _ = self.mixup_fn(images, target)
-            model_output = self.model(images, self.mask_ratio)
-            if len(model_output) > 1:
-                loss = model_output[0]
-            else:
-                loss = self.model(images, self.mask_ratio)
 
-            if self.ema_model is not None:
-                self.ema_model.update(self.model)
-            return loss, None
-        else:
-            raise NotImplementedError
+def list_files(dataset_path):
+    print("Listing files in:", dataset_path)
+    images = []
+    for root, _, files in sorted(os.walk(dataset_path)):
+        for name in sorted(files):
+            if name.lower().endswith('.tif'):
+                images.append(os.path.join(root, name))
+    print(f"Found {len(images)} .tif files.")
+    return images
 
+
+class CustomImageDataset(Dataset):
+    """The above class is a custom dataset class for images in PyTorch."""
+    def __init__(self, img_dir):
+        self.img_dir = img_dir
+        self.images = list_files(self.img_dir)
+        self.transform =  transforms.Compose([
+                            transforms.Resize(224),
+                            transforms.CenterCrop(224),
+                            transforms.ToTensor(),
+                            transforms.Normalize([0.485, 0.456, 0.406],
+                                                [0.229, 0.224, 0.225])
+                        ])
+
+    def __len__(self):
+        return len(self.images)
+
+    def __getitem__(self, idx):
+        img_path = self.images[idx]
+        image = Image.open(img_path).convert("RGB")
+        if self.transform:
+            image = self.transform(image)
+        return image, img_path
+    
 
 class Exp(BaseExp):
     def __init__(self, batch_size, max_epoch=400):
@@ -182,42 +172,53 @@ class Exp(BaseExp):
         msg = self.get_model().load_state_dict(state_dict, strict=False)
         return msg
 
+class MAE(nn.Module):
+    def __init__(self, args, model):
+        super(MAE, self).__init__()
+        self.model = model
+        # mixup
+        mixup_active = args.mixup > 0 or args.cutmix > 0.0 or args.cutmix_minmax is not None
+        if mixup_active:
+            mixup_fn = Mixup(
+                mixup_alpha=args.mixup,
+                cutmix_alpha=args.cutmix,
+                cutmix_minmax=args.cutmix_minmax,
+                prob=args.mixup_prob,
+                switch_prob=args.mixup_switch_prob,
+                mode=args.mixup_mode,
+                label_smoothing=args.smoothing,
+                num_classes=args.num_classes,
+            )
+        else:
+            mixup_fn = None
+        self.mixup_fn = mixup_fn
+        self.mask_ratio = args.mask_ratio
+        # ema
+        if args.model_ema:
+            self.ema_model = ModelEmaV2(
+                self.model, decay=args.model_ema_decay, device="cpu" if args.model_ema_force_cpu else None
+            )
+        else:
+            self.ema_model = None
 
+    def forward(self, x, target=None, update_param=False):
+        if self.training:
+            images = x
+            if self.mixup_fn is not None:
+                images, _ = self.mixup_fn(images, target)
+            model_output = self.model(images, self.mask_ratio)
+            if len(model_output) > 1:
+                loss = model_output[0]
+            else:
+                loss = self.model(images, self.mask_ratio)
 
-
-def list_files(dataset_path):
-    print("Listing files in:", dataset_path)
-    images = []
-    for root, _, files in sorted(os.walk(dataset_path)):
-        for name in sorted(files):
-            if name.lower().endswith('.tif'):
-                images.append(os.path.join(root, name))
-    print(f"Found {len(images)} .tif files.")
-    return images
-
-
-class CustomImageDataset(Dataset):
-    """The above class is a custom dataset class for images in PyTorch."""
-    def __init__(self, img_dir):
-        self.img_dir = img_dir
-        self.images = list_files(self.img_dir)
-        self.transform =  transforms.Compose([
-                            transforms.Resize(224),
-                            transforms.CenterCrop(224),
-                            transforms.ToTensor(),
-                            transforms.Normalize([0.485, 0.456, 0.406],
-                                                [0.229, 0.224, 0.225])
-                        ])
-
-    def __len__(self):
-        return len(self.images)
-
-    def __getitem__(self, idx):
-        img_path = self.images[idx]
-        image = Image.open(img_path).convert("RGB")
-        if self.transform:
-            image = self.transform(image)
-        return image, img_path
+            if self.ema_model is not None:
+                self.ema_model.update(self.model)
+            return loss, None
+        else:
+            images = x
+            model_output = self.model(images, self.mask_ratio, return_features=True)  # Ensure your model supports return_features
+            return model_output  # Return the features directly
 
 if __name__ == "__main__":
     exp = Exp(1)
@@ -235,6 +236,7 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print("Using device:", device)
     model.to(device)  # Move your model to the GPU
+    model.eval()  # Set the model to evaluation mode
 
     dir_path = "/data/fundus"
     dataset = CustomImageDataset(dir_path)
@@ -280,7 +282,6 @@ if __name__ == "__main__":
         finally:
             # Force garbage collection to run (optional, could be expensive)
             gc.collect()
-
 
 
 
